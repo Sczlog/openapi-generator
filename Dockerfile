@@ -18,9 +18,11 @@ COPY ./modules/openapi-generator-cli ${GEN_DIR}/modules/openapi-generator-cli
 COPY ./modules/openapi-generator-core ${GEN_DIR}/modules/openapi-generator-core
 COPY ./modules/openapi-generator ${GEN_DIR}/modules/openapi-generator
 COPY ./pom.xml ${GEN_DIR}
+# copy maven config for national registry
+COPY ./resource/settings.xml /root/.m2/settings.xml
 
 # Pre-compile openapi-generator-cli
-RUN mvn -am -pl "modules/openapi-generator-cli" package
+RUN mvn -am -pl "modules/openapi-generator-cli" package "-Dmaven.test.skip=true"
 
 # This exists at the end of the file to benefit from cached layers when modifying docker-entrypoint.sh.
 COPY docker-entrypoint.sh /usr/local/bin/
