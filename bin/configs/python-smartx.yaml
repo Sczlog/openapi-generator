@@ -1,0 +1,6 @@
+generatorName: python-smartx
+outputDir: samples/openapi3/client/petstore/python-smartx
+inputSpec: D:/WorkSpace/cloudtower-sdk/resource/swagger.java.json
+templateDir: modules/openapi-generator/src/main/resources/python-smartx
+additionalProperties:
+  packageName: petstore_api
