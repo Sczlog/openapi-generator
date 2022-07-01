@@ -55,6 +55,7 @@ org.openapitools.codegen.languages.HaskellHttpClientCodegen
 org.openapitools.codegen.languages.HaskellServantCodegen
 org.openapitools.codegen.languages.HaskellYesodServerCodegen
 org.openapitools.codegen.languages.JavaClientCodegen
+org.openapitools.codegen.languages.JavaSmartxClientCodegen
 org.openapitools.codegen.languages.JavaCXFClientCodegen
 org.openapitools.codegen.languages.JavaInflectorServerCodegen
 org.openapitools.codegen.languages.JavaMicronautClientCodegen
