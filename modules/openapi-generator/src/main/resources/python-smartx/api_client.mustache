@@ -519,14 +519,23 @@ class ApiClient(object):
                     continue
                 file_names = v if type(v) is list else [v]
                 for n in file_names:
-                    with open(n, 'rb') as f:
-                        filename = os.path.basename(f.name)
-                        filedata = f.read()
-                        mimetype = (mimetypes.guess_type(filename)[0] or
-                                    'application/octet-stream')
-                        params.append(
-                            tuple([k, tuple([filename, filedata, mimetype])]))
-
+                    paramType = type(n)
+                    if paramType is str:
+                        with open(n, 'rb') as f:
+                            filename = os.path.basename(f.name)
+                            filedata = f.read()
+                            mimetype = (mimetypes.guess_type(filename)[0] or
+                                        'application/octet-stream')
+                            params.append(tuple([k, tuple([filename, filedata, mimetype])]))
+                    elif paramType is bytes:
+                        filename = 'file'
+                        mimetype = 'application/octet-stream'
+                        params.append(tuple([k, tuple([filename, n, mimetype])]))
+                    else:
+                        raise rest.ApiException(
+                          400,
+                          "only support file path or bytes as file parameter"
+                        )
         return params
 
     def select_header_accept(self, accepts):
